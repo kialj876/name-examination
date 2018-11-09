@@ -191,7 +191,8 @@ export default new Vuex.Store({
                     approved: {response: {numfound: ''}},
                     conditional: {response: {numfound: ''}},
                     rejected: {response: {numfound: ''}}
-    }
+    },
+    cobrsJSON: null,
   },
   mutations: {
     requestType (state, value) {
@@ -606,6 +607,10 @@ export default new Vuex.Store({
 
     loadStatsDataJSON(state,params){
       state.statsDataJSON[params.myState] = params.JSONdata
+    },
+
+    loadCobrsJSON(state, JSONdata){
+      state.cobrsJSON = JSONdata;
     },
 
     update_nrData(state) {
@@ -1377,6 +1382,20 @@ export default new Vuex.Store({
       .catch(error => console.log('ERROR: ' + error))
     },
 
+    cobrsSearch({dispatch,commit},searchStr) {
+      console.log('action: getting results for cobrsSearch');
+      const myToken = sessionStorage.getItem('KEYCLOAK_TOKEN');
+      const url = '/api/v1/requests/cobrs/' + searchStr;
+      console.log('URL:' + url);
+      const vm = this;
+      dispatch('checkToken');
+      return axios.get(url, {headers: {Authorization: `Bearer ${myToken}`}}).then(response => {
+              console.log('COBRS Search Response:' + response.data);
+              commit('loadCobrsJSON',response.data);
+            })
+            .catch(error => console.log('ERROR: ' + error))
+    },
+
     resetValues({state, commit}){
       // clear NR specific JSON data so that it can't get accidentally re-used by the next NR number
       console.log('Deleting conflictsJSON from state')
@@ -1718,6 +1737,9 @@ export default new Vuex.Store({
     },
     errorJSON(state) {
       return state.errorJSON
+    },
+    cobrsJSON(state) {
+      return state.cobrsJSON
     },
   }
 })
