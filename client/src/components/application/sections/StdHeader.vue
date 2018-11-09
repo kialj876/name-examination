@@ -64,7 +64,9 @@
           </li>
         </ul>
 
-        <router-link to="/stats" class="nav-link ml-auto">Stats</router-link>
+        <router-link to="/cobrs" class="nav-link">COBRS Search</router-link>
+        <span class="navbar-text divider">|</span>
+        <router-link to="/stats" class="nav-link">Stats</router-link>
 
       </div>
     </nav>

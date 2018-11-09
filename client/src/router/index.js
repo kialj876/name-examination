@@ -8,6 +8,7 @@ const LandingPage = () => import(/* webpackChunkName: "home" */'@/components/Lan
 const Signin = () => import(/* webpackChunkName: "signin" */'@/components/auth/Signin')
 const NameExamination = () => import(/* webpackChunkName: "nameexamination" */'@/components/application/NameExamination')
 const Find = () => import(/* webpackChunkName: "find" */'@/components/application/Find')
+const Cobrs = () => import(/* webpackChunkName: "find" */'@/components/application/Cobrs/cobrs.vue')
 const Stats = () => import(/* webpackChunkName: "stats" */'@/components/application/Stats/Stats.vue')
 
 Vue.use(Router)
@@ -43,6 +44,14 @@ let router = new Router({
       name: 'find',
       component: Find,
       path: '/find',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      name: 'cobrs',
+      component: Cobrs,
+      path: '/cobrs',
       meta: {
         requiresAuth: true
       }
