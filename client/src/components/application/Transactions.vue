@@ -33,7 +33,7 @@
             <template v-slot:headers="{ headers }">
               <tr style="text-align: left" id="header-cells">
                 <th v-for="(header, index) in headers"
-                    :key="index"
+                    :key="'th-transaction-' + index"
                     style="text-align: left"
                     :style="header.style">
                   <template v-if="header.text === 'Date & Time'">
