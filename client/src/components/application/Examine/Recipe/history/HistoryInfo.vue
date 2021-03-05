@@ -28,7 +28,7 @@
         <v-flex header-mg lg9>{{nameState}}</v-flex>
         <v-flex lg12 header-mg v-if="conflicts.length > 0">
           <div class="item-heading item-detail">Decision:</div>
-          <div class="ml-3 mt-1" v-for="(conflict, i) in conflicts">{{ `${i+1}. ${conflict}` }}</div>
+          <div class="ml-3 mt-1" v-for="(conflict, i) in conflicts" :key="i">{{ `${i+1}. ${conflict}` }}</div>
         </v-flex>
         <v-flex lg12 header-mg v-if="decisionText">{{ decisionText }}</v-flex>
       </v-layout>

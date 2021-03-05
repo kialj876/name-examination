@@ -1,10 +1,9 @@
 <template>
-  <v-container fluid pa-1 pl-5>
+  <v-container fluid pa-1 pl-5 v-if="checkConditions(item)">
     <v-layout :class="addBottomBorder(index) ? 'border-bottom' : ''"
               :key="index+'json-data'"
               text-overflow
-              v-for="(item, index) of data"
-              v-if="checkConditions(item)">
+              v-for="(item, index) of data">
 
       <!--NAME CHOICES + NAME DECISION TEXT -->
       <v-layout column v-if="item.key === 'names'" pb-2 style="white-space: normal">
@@ -36,11 +35,10 @@
       <!--COMMENTS-->
       <v-layout column v-else-if="item.key === 'comments'" style="overflow: none; overflow-wrap: break-word">
         <v-flex json-data-header>Comments</v-flex>
-        <div class="ml-5 mr-5 my-3">
+        <div class="ml-5 mr-5 my-3" v-if="comment">
           <v-layout :comment-style="i !== 0"
                     :key="'tr-com'+i"
                     v-for="(comment, i) in item.value"
-                    v-if="comment"
                     wrap>
             <v-flex :mt-2="i !== 0" fs-13 lg12>{{ comment.comment }}</v-flex>
             <v-flex ml-3 ft-ital shrink>{{ '-' + comment.examiner + ', ' }}</v-flex>
@@ -60,11 +58,10 @@
         <v-flex lg12 json-data-header>Applicant Information</v-flex>
 
         <!--ADDRESS SIDE-->
-        <v-flex lg6>
+        <v-flex lg6 v-if="addrFields.includes(key) && value">
           <v-layout :key="'trans-app-col-'+key"
                     v-for="(value, key) in item.value"
-                    ml-5
-                    v-if="addrFields.includes(key) && value">
+                    ml-5>
             <template v-if="key === 'addrLine1'">
               <v-flex sub-header lg2>Address:</v-flex>
               <v-flex lg8>{{ value }}</v-flex>
@@ -77,10 +74,9 @@
         </v-flex>
 
         <!--CONTACT SIDE-->
-        <v-flex lg6>
+        <v-flex lg6 v-if="!addrFields.includes(key) && value">
           <v-layout :key="'trans-app-col-'+key"
-                    v-for="(value, key) in item.value"
-                    v-if="!addrFields.includes(key) && value">
+                    v-for="(value, key) in item.value">
             <v-flex sub-header lg4>{{ key + ': ' }}</v-flex>
             <v-flex lg8>{{ value }}</v-flex>
           </v-layout>
@@ -94,7 +90,6 @@
           <v-flex lg12 json-data-header>NWPTA</v-flex>
           <v-flex lg6>
             <v-layout wrap
-                      v-if="value"
                       v-for="(value, key) in item.value[0]"
                       :key="'nwpta'+ key"
                       ml-5>
@@ -105,7 +100,6 @@
           <v-flex lg6>
             <v-layout wrap
                       v-for="(value, key) in item.value[1]"
-                      v-if="value"
                       :key="'nwpta'+ key"
                       pl-3>
               <v-flex sub-header lg4>{{ key + ': ' }}</v-flex>
