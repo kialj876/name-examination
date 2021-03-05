@@ -3,9 +3,9 @@
   <v-container ma-0
                pa-0
                fluid
-               id="compare-container">
-    <v-layout v-if="comparedConflicts.length > 0"
-              v-for="(conflict, i) in comparedConflicts"
+               id="compare-container"
+               v-if="comparedConflicts.length > 0">
+    <v-layout v-for="(conflict, i) in comparedConflicts"
               :key="i+'-compared'"
               :id="i+'-compared'"
               mb-1
