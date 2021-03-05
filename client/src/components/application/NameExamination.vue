@@ -24,10 +24,10 @@
 
 <script>
 /* eslint-disable */
-  import CommentsPopUp from '@/components/application/Examine/CommentsPopUp'
+  import CommentsPopUp from '@/components/application/Examine/CommentsPopUp.vue';
   import CompName from '@/components/application/Examine/CompName.vue';
   import RequestInfoHeader from '@/components/application/Examine/RequestInfoHeader.vue';
-  import Transactions from './Transactions'
+  import Transactions from '@/components/application/Transactions.vue';
 
   export default {
     name: "NameExanination",

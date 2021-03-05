@@ -42,7 +42,7 @@
         </v-layout>
 
         <v-layout px-3 pb-2 mt-2 column class="comments-display">
-          <!-- <template v-for="(comment, i) in comments">
+          <template v-for="(comment, i) in comments">
             <v-flex fs-15 comment-text :key="'comment' + comment.comment + i">
               {{ comment.comment }}
             </v-flex>
@@ -52,7 +52,7 @@
             <v-flex my-2 :key="'commentcount' + i">
               <v-divider v-if="i < commentsCount - 1 " />
             </v-flex>
-          </template> -->
+          </template>
         </v-layout>
       </v-container>
     </v-card>
